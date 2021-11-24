@@ -11,7 +11,7 @@ const indexedDB =
 
   req.onupgradeneeded = ({ target }) => {
     let db = target.result;
-    db.createObjectStore("pending", { autoIncrement: true });
+    db.createObjectStore("budgetStorage", { autoIncrement: true });
   };
   
   req.onsuccess = ({ target }) => {
@@ -28,15 +28,15 @@ const indexedDB =
   };
   
   function saveRecord(record) {
-    const transaction = db.transaction(["pending"], "readwrite");
-    const store = transaction.objectStore("pending");
+    const transaction = db.transaction(["budgetStorage"], "readwrite");
+    const store = transaction.objectStore("budgetStorage");
   
     store.add(record);
   }
   
   function checkDatabase() {
-    const transaction = db.transaction(["pending"], "readwrite");
-    const store = transaction.objectStore("pending");
+    const transaction = db.transaction(["budgetStorage"], "readwrite");
+    const store = transaction.objectStore("budgetStorage");
     const getAll = store.getAll();
   
     getAll.onsuccess = function() {

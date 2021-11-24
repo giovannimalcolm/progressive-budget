@@ -20,7 +20,7 @@ self.addEventListener("install", function(event) {
         return cache.addAll(FILES_TO_CACHE);
       })
     );
-
+    self.skipWaiting();
   });
 
 
